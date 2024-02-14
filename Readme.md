@@ -3,7 +3,10 @@
 ## Usage Example
 
 ### Requirements
-Please complete the steps mentioned inside the [Palworld Openshift Readme](https://github.com/Cardes/docker-palworld-dedicated-server/blob/develop/openshift/README.md)
+- helm cli
+- logged into openshift cluster with oc cli, namespace admin rights
+- Openshift Registry available
+- only one release per namespace can have `createBuildResources: true` - those are shared per namespace
 
 ### Installation
 - Clone this Repository
