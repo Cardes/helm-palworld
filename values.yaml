@@ -2,6 +2,9 @@
 Applikation: "mypals"
 Namespace: "a-lot-of-pals"
 
+#only one release per namespace can manage the builressources, so this is only allowed to be `true` once per namespace
+createBuildResources: true
+
 #currently only nfs storage backend with a fixed ip adress and storagepath is supported
 StorageServerIP: 10.100.1.2
 
