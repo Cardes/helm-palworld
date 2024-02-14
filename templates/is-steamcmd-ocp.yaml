@@ -1,0 +1,11 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: steamcmd
+  namespace: {{ .Values.Namespace }}
+  labels:
+    build: steamcmd-ocp
+spec:
+  lookupPolicy:
+    local: false

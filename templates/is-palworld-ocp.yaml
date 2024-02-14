@@ -1,0 +1,11 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: palworld-ocp
+  namespace: {{ .Values.Namespace }}
+  labels:
+    build: palworld-ocp
+spec:
+  lookupPolicy:
+    local: false

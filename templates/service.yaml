@@ -1,0 +1,26 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.Applikation }}
+  namespace: {{ .Values.Namespace }}
+  labels:
+    app: {{ .Values.Applikation }}
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: gameserver
+      port: 8211
+      protocol: UDP
+      targetPort: 8211
+    - name: rcon
+      port: 25575
+      protocol: TCP
+      targetPort: 25575
+  internalTrafficPolicy: Cluster
+  type: LoadBalancer
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: {{ .Values.Applikation }}

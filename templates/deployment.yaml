@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.Applikation }}
+  namespace: {{ .Values.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.Applikation }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Applikation }}
+    spec:
+      containers:
+        - name: palworld-dedicated-server
+          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/palworld-ocp:latest"
+          ports:
+            - name: gameserver
+              containerPort: 8211
+              protocol: UDP
+            - name: rcon
+              containerPort: 25575
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.Applikation }}-env
+          volumeMounts:
+            - name: game-volume
+              mountPath: /palworld
+      volumes:
+        - name: game-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.Applikation }}-data

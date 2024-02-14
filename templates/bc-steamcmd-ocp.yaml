@@ -1,0 +1,34 @@
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: steamcmd-ocp
+  namespace: {{ .Values.Namespace }}
+  labels:
+    build: steamcmd-ocp
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'steamcmd:ocp'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'debian:bookworm-slim'
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/Cardes/steamcmd-ocp.git'
+    contextDir: bookworm
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChange:
+        lastTriggeredImageID: 'debian:bookworm-slim'
+  runPolicy: Serial
