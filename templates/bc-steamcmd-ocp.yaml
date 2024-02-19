@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Values.Namespace }}
   labels:
     build: steamcmd-ocp
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   output:
     to:

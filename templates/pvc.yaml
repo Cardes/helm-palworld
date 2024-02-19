@@ -4,6 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.Applikation }}-data
   namespace: {{ .Values.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   accessModes:
     - ReadWriteOnce

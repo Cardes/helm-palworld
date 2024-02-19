@@ -4,6 +4,9 @@ apiVersion: image.openshift.io/v1
 metadata:
   name: debian
   namespace: {{ .Values.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   lookupPolicy:
     local: false

@@ -5,7 +5,8 @@ metadata:
   name: {{ .Values.Applikation }}
   namespace: {{ .Values.Namespace }}
   labels:
-    app: {{ .Values.Applikation }}
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
   annotations:
     metallb.universe.tf/loadBalancerIPs: {{ .Values.LoadBalancerIP }}
 spec:

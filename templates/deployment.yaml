@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: {{ .Values.Applikation }}
   namespace: {{ .Values.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   replicas: 1
   selector:

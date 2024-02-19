@@ -4,6 +4,9 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.Applikation }}-env
   namespace: {{ .Values.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.Applikation }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 data:
 {{- range $key, $value := .Values.env }}
   {{ $key }}: "{{ $value }}"
