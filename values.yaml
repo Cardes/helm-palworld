@@ -2,6 +2,9 @@
 Applikation: "mypals"
 Namespace: "a-lot-of-pals"
 
+#Specify Loadbalancer IP
+LoadBalancerIP: 10.100.1.100
+
 #only one release per namespace can manage the builressources, so this is only allowed to be `true` once per namespace
 createBuildResources: true
 
