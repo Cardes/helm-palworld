@@ -32,5 +32,9 @@ spec:
     - type: ImageChange
       imageChange:
         lastTriggeredImageID: 'steamcmd:ocp'
+    - type: Generic
+      generic:
+        secretReference:
+          name: {{ .Values.Applikation }}-webhooksecret
   runPolicy: Serial
 {{ end }}
